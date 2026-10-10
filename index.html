@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTRODUCCIÓN A LA KINESIOLOGÍA - Osteología, Histología y Biomecánica (Facultad de Cs. Médicas - UCCuyo)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f7f9f6;
+        }
+        /* Paleta Institucional UCCuyo (Verde Oliva) */
+        .text-accent { color: #436600; }
+        .bg-accent { background-color: #436600; }
+        .bg-accent-hover:hover { background-color: #324d00; }
+        .bg-accent-light { background-color: #f1f6eb; }
+        .border-accent { border-color: #436600; }
+
+        .text-primary { color: #436600; }
+        .bg-primary { background-color: #436600; }
+        .bg-primary-dark { background-color: #324d00; }
+        .border-primary { border-color: #436600; }
+        
+        .focus-accent:focus {
+            border-color: #436600;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 102, 0, 0.2);
+        }
+        
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .canvas-bg {
+            background-color: #ffffff;
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-accent/20">
+
+    <!-- Cabecera Institucional UCCuyo -->
+    <header class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-accent flex items-center justify-center text-white font-bold text-xl shadow-md">
+                    K
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-gray-800 tracking-wide uppercase">INTRODUCCIÓN A LA KINESIOLOGÍA</h1>
+                    <p class="text-xs text-gray-500 font-semibold">Lic. en Kinesiología y Fisiatría (Facultad de Cs. Médicas - UCCuyo)</p>
+                </div>
+            </div>
+            
+            <!-- Botón Guía de Uso -->
+            <button onclick="openTutorial()" class="flex items-center gap-1.5 px-3 py-1.5 bg-accent text-white text-xs font-semibold rounded-lg shadow-sm hover:opacity-90 transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Guía de Uso
+            </button>
+        </div>
+    </header>
+
+    <!-- Contenido Principal con Barra Lateral -->
+    <main class="flex-1 max-w-6xl w-full mx-auto p-4 md:p-6 flex flex-col lg:flex-row gap-6">
+        
+        <!-- Menú de Navegación Lateral -->
+        <nav class="w-full lg:w-64 flex flex-row lg:flex-col gap-2 bg-white p-3 rounded-2xl shadow-sm border border-gray-100 overflow-x-auto lg:overflow-x-visible whitespace-nowrap lg:whitespace-normal sticky top-20 h-fit">
+            <button onclick="switchTab('tab-functions')" id="btn-tab-functions" class="bg-accent text-white flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-semibold transition shadow-sm">
+                1. Funciones & Hueso Largo
+            </button>
+            <button onclick="switchTab('tab-histology')" id="btn-tab-histology" class="text-gray-700 hover:bg-gray-100 flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-medium transition">
+                2. Histología & Remodelado
+            </button>
+            <button onclick="switchTab('tab-tissue')" id="btn-tab-tissue" class="text-gray-700 hover:bg-gray-100 flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-medium transition">
+                3. Tejidos & Clasificación
+            </button>
+            <button onclick="switchTab('tab-division')" id="btn-tab-division" class="text-gray-700 hover:bg-gray-100 flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-medium transition">
+                4. Esqueleto Axial vs Apendicular
+            </button>
+            <button onclick="switchTab('tab-casos')" id="btn-tab-casos" class="text-gray-700 hover:bg-gray-100 flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-medium transition">
+                5. Casos Clínicos Kinesiológicos
+            </button>
+        </nav>
+
+        <!-- Área de Contenido Dinámico -->
+        <div class="flex-1 space-y-6">
+
+            <!-- ==========================================
+                 MÓDULO 1: FUNCIONES SISTÉMICAS & HUESO LARGO
+                 ========================================== -->
+            <section id="tab-functions" class="space-y-6">
+                <!-- Introducción del Módulo -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-4 mb-4">
+                        <div>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-accent bg-accent-light px-2.5 py-1 rounded-md">Módulo 1</span>
+                            <h2 class="text-xl font-bold text-gray-800 mt-1">Funciones Sistémicas y Anatomía del Hueso Largo</h2>
+                        </div>
+                        <div class="text-xs text-gray-500 max-w-xs">
+                            Sostén, protección, palancas biomecánicas y anatomía macroscópica del fémur.
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        El sistema esquelético constituye la base estructural y dinámica del cuerpo humano. Además de sostener tejidos blandos y proteger cavidades vitales, los huesos actúan en kinesiología como <strong>brazos de palanca rígidos</strong> sobre los cuales los músculos aplican torques mediante sus tendones, albergando la médula ósea y manteniendo la homeostasis mineral de calcio y fósforo.
+                    </p>
+                </div>
+
+                <!-- 5 Funciones Esqueléticas -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+                    <h3 class="text-sm font-bold text-gray-800 flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group text-accent"></i>
+                        Las Cinco Funciones Fisiológicas del Esqueleto
+                    </h3>
+                    <p class="text-xs text-gray-500">
+                        Hacé clic sobre cada función para analizar su mecanismo y relevancia en la práctica kinésica:
+                    </p>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                        <button onclick="selectFunction(1)" id="fn-card-1" class="p-3.5 text-left rounded-xl border border-gray-200 hover:border-gray-300 text-gray-700 font-bold text-xs flex flex-col gap-1 transition">
+                            <span class="flex items-center gap-2 text-accent">
+                                <i class="fa-solid fa-cubes"></i>
+                                <span>1. Sostén</span>
+                            </span>
+                            <span class="text-[11px] font-normal text-gray-600">Armazón estructural</span>
+                        </button>
+
+                        <button onclick="selectFunction(2)" id="fn-card-2" class="p-3.5 text-left rounded-xl border border-gray-200 hover:border-gray-300 text-gray-700 font-bold text-xs flex flex-col gap-1 transition">
+                            <span class="flex items-center gap-2 text-rose-600">
+                                <i class="fa-solid fa-shield"></i>
+                                <span>2. Protección</span>
+                            </span>
+                            <span class="text-[11px] font-normal text-gray-600">Cavidades vitales</span>
+                        </button>
+
+                        <button onclick="selectFunction(3)" id="fn-card-3" class="p-3.5 text-left rounded-xl border-2 border-accent bg-accent-light text-accent font-bold text-xs flex flex-col gap-1 transition">
+                            <span class="flex items-center gap-2 text-emerald-700">
+                                <i class="fa-solid fa-person-running"></i>
+                                <span>3. Biomecánica</span>
+                            </span>
+                            <span class="text-[11px] font-normal text-gray-600">Sistemas de palancas</span>
+                        </button>
+
+                        <button onclick="selectFunction(4)" id="fn-card-4" class="p-3.5 text-left rounded-xl border border-gray-200 hover:border-gray-300 text-gray-700 font-bold text-xs flex flex-col gap-1 transition">
+                            <span class="flex items-center gap-2 text-amber-700">
+                                <i class="fa-solid fa-scale-balanced"></i>
+                                <span>4. Homeostasis</span>
+                            </span>
+                            <span class="text-[11px] font-normal text-gray-600">Calcio y fósforo</span>
+                        </button>
+
+                        <button onclick="selectFunction(5)" id="fn-card-5" class="p-3.5 text-left rounded-xl border border-gray-200 hover:border-gray-300 text-gray-700 font-bold text-xs flex flex-col gap-1 transition">
+                            <span class="flex items-center gap-2 text-purple-700">
+                                <i class="fa-solid fa-droplet"></i>
+                                <span>5. Hematopoyesis</span>
+                            </span>
+                            <span class="text-[11px] font-normal text-gray-600">Médula roja y amarilla</span>
+                        </button>
+                    </div>
+
+                    <!-- Ficha Detallada de la Función -->
+                    <div id="functionDetailCard" class="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-2">
+                        <div class="flex items-center gap-2">
+                            <i id="fnDetailIcon" class="fa-solid fa-person-running text-accent text-base"></i>
+                            <h4 id="fnDetailTitle" class="font-bold text-sm text-gray-800">3. Asistencia al Movimiento (Sistemas de Palancas)</h4>
+                        </div>
+                        <p id="fnDetailText" class="text-xs text-gray-600 leading-relaxed">
+                            En kinesiología, los huesos actúan como <strong>brazos de palanca rígidos</strong>. Los músculos esqueléticos se insertan a través de sus <strong>tendones</strong>, y al contraerse generan un momento de fuerza (torque) alrededor de los ejes articulares. Sin la rigidez ósea, la transmisión de fuerza sería ineficiente e incapaz de generar marcha o prensión.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Anatomía del Hueso Largo (Canvas Interactivo) -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-gray-100 pb-3">
+                        <div>
+                            <h3 class="text-sm font-bold text-gray-800 flex items-center gap-2">
+                                <i class="fa-solid fa-bone text-accent"></i>
+                                Modelo Anatómico Interactivo: Corte Longitudinal y Biomecánica del Fémur
+                            </h3>
+                            <p class="text-xs text-gray-500">
+                                Explorá la estructura macroscópica, las trabéculas de carga y la vascularización perióstica en tiempo real.
+                            </p>
+                        </div>
+                        
+                        <!-- Conmutador de Modos de Visualización -->
+                        <div class="flex items-center gap-1.5 bg-gray-50 p-1 rounded-xl border border-gray-200 text-xs">
+                            <button onclick="setBoneViewMode('corte')" id="btn-mode-corte" class="px-2.5 py-1 rounded-lg font-bold bg-accent text-white shadow-xs transition">
+                                <i class="fa-solid fa-layer-group mr-1"></i> Corte Completo
+                            </button>
+                            <button onclick="setBoneViewMode('cargas')" id="btn-mode-cargas" class="px-2.5 py-1 rounded-lg font-semibold text-gray-600 hover:bg-gray-200 transition">
+                                <i class="fa-solid fa-arrows-down-to-line mr-1"></i> Líneas de Carga
+                            </button>
+                            <button onclick="setBoneViewMode('vascular')" id="btn-mode-vascular" class="px-2.5 py-1 rounded-lg font-semibold text-gray-600 hover:bg-gray-200 transition">
+                                <i class="fa-solid fa-heart-pulse mr-1"></i> Vascularización
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                        <div class="lg:col-span-7 flex flex-col items-center">
+                            <div class="w-full relative rounded-2xl border border-gray-200 overflow-hidden shadow-inner canvas-bg p-3 flex justify-center">
+                                <canvas id="canvas-longbone" width="540" height="420" class="w-full max-w-[480px] h-auto block cursor-pointer"></canvas>
+                            </div>
+                            <span class="text-[11px] text-gray-400 mt-2 text-center">
+                                Hacé clic directamente sobre cualquier región del fémur o usá los botones para focalizar el análisis.
+                            </span>
+
+                            <div class="flex flex-wrap justify-center gap-1.5 mt-3">
+                                <button onclick="inspectBonePart('epifisis-prox')" id="btn-part-epifisis-prox" class="px-3 py-1.5 bg-accent text-white rounded-xl text-xs font-semibold shadow-xs transition">1. Epífisis Proximal</button>
+                                <button onclick="inspectBonePart('metafisis')" id="btn-part-metafisis" class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-xl text-xs font-semibold border border-gray-200 hover:bg-gray-200 transition">2. Metáfisis</button>
+                                <button onclick="inspectBonePart('diafisis')" id="btn-part-diafisis" class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-xl text-xs font-semibold border border-gray-200 hover:bg-gray-200 transition">3. Diáfisis</button>
+                                <button onclick="inspectBonePart('periostio')" id="btn-part-periostio" class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-xl text-xs font-semibold border border-gray-200 hover:bg-gray-200 transition">4. Periostio</button>
+                                <button onclick="inspectBonePart('epifisis-dist')" id="btn-part-epifisis-dist" class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-xl text-xs font-semibold border border-gray-200 hover:bg-gray-200 transition">5. Epífisis Distal</button>
+                            </div>
+                        </div>
+
+                        <!-- Inspector Clínico y Biomecánico -->
+                        <div class="lg:col-span-5 space-y-3 text-xs">
+                            <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-2">
+                                <div class="flex items-center justify-between border-b border-gray-200 pb-2">
+                                    <span id="inspectBadge" class="text-[10px] font-bold uppercase text-accent bg-accent-light px-2.5 py-0.5 rounded-full border border-accent/20">Epífisis Proximal</span>
+                                    <span id="inspectMarker" class="text-[11px] text-gray-400 font-semibold">Extremo Superior Articular</span>
+                                </div>
+                                <h4 id="inspectTitle" class="text-sm font-bold text-gray-800">Epífisis Proximal y Médula Ósea Roja</h4>
+                                <p id="inspectDescription" class="text-gray-600 leading-relaxed">
+                                    Extremo ensanchado del fémur (cabeza y cuello femoral). Su interior alberga tejido óseo esponjoso con médula ósea roja (hematopoyesis) y su superficie articular está recubierta por cartílago hialino para amortiguar sobrecargas mecánicas.
+                                </p>
+                            </div>
+
+                            <div class="bg-accent-light p-3.5 rounded-xl border border-accent/20 text-gray-800 space-y-1">
+                                <strong class="text-accent flex items-center gap-1.5"><i class="fa-solid fa-stethoscope"></i> Relevancia en Kinesiología y Fisiatría:</strong>
+                                <p id="inspectClinical" class="text-[11px] leading-relaxed text-gray-700">En adultos mayores, el cuello femoral epifisario es susceptible a fracturas por osteoporosis debido al adelgazamiento de las trabéculas de compresión y tracción.</p>
+                            </div>
+
+                            <!-- Panel Dinámico de Parámetros Biomecánicos -->
+                            <div class="bg-white p-3.5 rounded-xl border border-gray-200 space-y-2">
+                                <span class="font-bold text-gray-800 text-[11px] block flex items-center gap-1.5">
+                                    <i class="fa-solid fa-gauge-high text-accent"></i> Parámetros Fisiológicos y Biomecánicos:
+                                </span>
+                                <div class="grid grid-cols-2 gap-2 text-[11px] text-gray-600">
+                                    <div class="bg-gray-50 p-2 rounded-lg border border-gray-100">
+                                        <span class="text-gray-400 block text-[9px] uppercase font-bold">Tipo de Tejido:</span>
+                                        <strong id="boneStatTissue" class="text-gray-800">Esponjoso (Trabecular)</strong>
+                                    </div>
+                                    <div class="bg-gray-50 p-2 rounded-lg border border-gray-100">
+                                        <span class="text-gray-400 block text-[9px] uppercase font-bold">Resistencia Primaria:</span>
+                                        <strong id="boneStatStress" class="text-gray-800">Disipación de Impacto</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 MÓDULO 2: HISTOLOGÍA ÓSEA & LEY DE WOLFF
+                 ========================================== -->
+            <section id="tab-histology" class="space-y-6 hidden">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-4 mb-4">
+                        <div>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-accent bg-accent-light px-2.5 py-1 rounded-md">Módulo 2</span>
+                            <h2 class="text-xl font-bold text-gray-800 mt-1">Histología Ósea, Dinámica Celular y Ley de Wolff</h2>
+                        </div>
+                        <div class="text-xs text-gray-500 max-w-xs">
+                            Matriz extracelular calcificada y equilibrio dinámico entre osteoblastos y osteoclastos.
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        El tejido óseo es un material biocompuesto extraordinario que combina la flexibilidad del <strong>colágeno tipo I</strong> con la dureza inorgánica de los <strong>cristales de hidroxiapatita</strong>. Su remodelado responde a la <strong>Ley de Wolff</strong>: los osteocitos detectan las cargas mecánicas y modulan la acción coordinada entre osteoblastos (síntesis) y osteoclastos (resorción).
+                    </p>
+                </div>
+
+                <!-- Tríada de la Matriz Extracelular -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+                    <h3 class="text-sm font-bold text-gray-800 flex items-center gap-2">
+                        <i class="fa-solid fa-flask text-accent"></i>
+                        Composición de la Matriz Extracelular Calcificada
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                        <div class="bg-gray-50 p-3.5 rounded-xl border border-gray-200 space-y-1">
+                            <div class="flex justify-between items-center font-bold text-sky-700">
+                                <span>Agua (H₂O)</span>
+                                <span class="bg-sky-100 px-2 py-0.5 rounded text-[10px]">~15%</span>
+                            </div>
+                            <p class="text-gray-600 text-[11px] leading-relaxed">Transporte iónico, nutrición celular y amortiguación hidrostática en poros.</p>
+                        </div>
+                        <div class="bg-gray-50 p-3.5 rounded-xl border border-gray-200 space-y-1">
+                            <div class="flex justify-between items-center font-bold text-amber-700">
+                                <span>Fibras de Colágeno Tipo I</span>
+                                <span class="bg-amber-100 px-2 py-0.5 rounded text-[10px]">~30%</span>
+                            </div>
+                            <p class="text-gray-600 text-[11px] leading-relaxed">Aporta flexibilidad estructural y resistencia a las fuerzas de tracción y torsión.</p>
+                        </div>
+                        <div class="bg-gray-50 p-3.5 rounded-xl border border-gray-200 space-y-1">
+                            <div class="flex justify-between items-center font-bold text-accent">
+                                <span>Cristales de Hidroxiapatita</span>
+                                <span class="bg-accent-light px-2 py-0.5 rounded text-[10px]">~55%</span>
+                            </div>
+                            <p class="text-gray-600 text-[11px] leading-relaxed">Sales de fosfato tricálcico y carbonato que confieren dureza pétrea y compresión.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 Tipos Celulares -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+                    <h3 class="text-sm font-bold text-gray-800 flex items-center gap-2">
+                        <i class="fa-solid fa-dna text-accent"></i>
+                        Las Cuatro Líneas Celulares del Tejido Óseo
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 flex flex-col justify-between">
+                            <div>
+                                <span class="text-[10px] font-bold text-blue-700 uppercase bg-blue-100 px-2 py-0.5 rounded">Célula Madre</span>
+                                <h4 class="font-bold text-gray-900 text-sm mt-1.5">Osteogénica</h4>
+                                <p class="text-gray-600 text-[11px] mt-1">Células mesenquimatosas no especializadas. Únicas con división celular mitótica.</p>
+                            </div>
+                            <span class="text-[10px] text-gray-500 mt-2 pt-2 border-t border-gray-200">Ubicada en periostio y endostio.</span>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 flex flex-col justify-between">
+                            <div>
+                                <span class="text-[10px] font-bold text-emerald-700 uppercase bg-emerald-100 px-2 py-0.5 rounded">Formadora Activa</span>
+                                <h4 class="font-bold text-gray-900 text-sm mt-1.5">Osteoblasto</h4>
+                                <p class="text-gray-600 text-[11px] mt-1">Sintetiza y secreta colágeno y matriz osteoide, iniciando la calcificación.</p>
+                            </div>
+                            <span class="text-[10px] text-emerald-700 font-semibold mt-2 pt-2 border-t border-gray-200">"OsteoBlast = Builds"</span>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 flex flex-col justify-between">
+                            <div>
+                                <span class="text-[10px] font-bold text-amber-700 uppercase bg-amber-100 px-2 py-0.5 rounded">Mecanosensora</span>
+                                <h4 class="font-bold text-gray-900 text-sm mt-1.5">Osteocito</h4>
+                                <p class="text-gray-600 text-[11px] mt-1">Células maduras en lagunas. Detectan estrés mecánico y regulan el remodelado.</p>
+                            </div>
+                            <span class="text-[10px] text-gray-500 mt-2 pt-2 border-t border-gray-200">Comunican mediante canalículos.</span>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 flex flex-col justify-between">
+                            <div>
+                                <span class="text-[10px] font-bold text-rose-700 uppercase bg-rose-100 px-2 py-0.5 rounded">Resorción Ósea</span>
+                                <h4 class="font-bold text-gray-900 text-sm mt-1.5">Osteoclasto</h4>
+                                <p class="text-gray-600 text-[11px] mt-1">Células gigantes que reabsorben matriz ósea liberando Ca²⁺ al plasma.</p>
+                            </div>
+                            <span class="text-[10px] text-rose-700 font-semibold mt-2 pt-2 border-t border-gray-200">"OsteoClast = Clashes"</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simulación Dinámica en Canvas (Ley de Wolff) -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-gray-100 pb-3">
+                        <div>
+                            <h3 class="text-sm font-bold text-gray-800 flex items-center gap-2">
+                                <i class="fa-solid fa-microscope text-accent"></i>
+                                Laboratorio de Remodelado Óseo (Ley de Wolff)
+                            </h3>
+                            <span class="text-xs text-gray-500">Comprobá el impacto de la carga mecánica frente a la inmovilización.</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-xs bg-gray-50 px-3 py-1.5 rounded-xl border border-gray-200">
+                            <span>Densidad: <strong id="boneDensityValue" class="text-accent font-bold">100% (Normal)</strong></span>
+                            <span class="text-gray-300">|</span>
+                            <span>Estado: <strong id="remodelingState" class="text-emerald-700 font-bold">Equilibrio</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                        <div class="lg:col-span-7 flex flex-col items-center">
+                            <div class="w-full relative rounded-2xl border border-gray-200 overflow-hidden shadow-inner canvas-bg p-2">
+                                <canvas id="canvas-remodeling" width="520" height="240" class="w-full h-auto block"></canvas>
+                            </div>
+                            <p id="remodelingFeedback" class="text-xs text-gray-600 mt-2 text-center leading-relaxed">
+                                En reposo fisiológico, la síntesis osteoblástica y la resorción osteoclástica mantienen el equilibrio homeostático.
+                            </p>
+                        </div>
+
+                        <div class="lg:col-span-5 space-y-2 text-xs">
+                            <span class="font-bold text-gray-700 block mb-1">Aplica un Estímulo Mecánico:</span>
+
+                            <button onclick="applyRemodelingStress('exercise')" class="w-full p-3 bg-gray-50 hover:bg-emerald-50/60 hover:border-emerald-500 border border-gray-200 rounded-xl text-left transition flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-base flex-shrink-0">
+                                    <i class="fa-solid fa-dumbbell"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-gray-800">Carga Mecánica / Ejercicio</div>
+                                    <div class="text-[11px] text-gray-500">Estimula osteoblastos aumentando la densidad trabecular.</div>
+                                </div>
+                            </button>
+
+                            <button onclick="applyRemodelingStress('bedrest')" class="w-full p-3 bg-gray-50 hover:bg-rose-50/60 hover:border-rose-500 border border-gray-200 rounded-xl text-left transition flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-rose-100 text-rose-800 flex items-center justify-center font-bold text-base flex-shrink-0">
+                                    <i class="fa-solid fa-bed"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-gray-800">Inmovilización Prolongada</div>
+                                    <div class="text-[11px] text-gray-500">Predomina la resorción osteoclástica (osteopenia por desuso).</div>
+                                </div>
+                            </button>
+
+                            <button onclick="applyRemodelingStress('kine_rehab')" class="w-full p-3 bg-gray-50 hover:bg-accent-light hover:border-accent border border-gray-200 rounded-xl text-left transition flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-accent-light text-accent flex items-center justify-center font-bold text-base flex-shrink-0">
+                                    <i class="fa-solid fa-person-walking"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-gray-800">Rehabilitación Kinésica Gradual</div>
+                                    <div class="text-[11px] text-gray-500">Restablece el equilibrio celular y orienta las trabéculas.</div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 MÓDULO 3: TEJIDOS & CLASIFICACIÓN MORFOLÓGICA
+                 ========================================== -->
+            <section id="tab-tissue" class="space-y-6 hidden">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-4 mb-4">
+                        <div>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-accent bg-accent-light px-2.5 py-1 rounded-md">Módulo 3</span>
+                            <h2 class="text-xl font-bold text-gray-800 mt-1">Tejido Compacto, Esponjoso y Taxonomía Morfológica</h2>
+                        </div>
+                        <div class="text-xs text-gray-500 max-w-xs">
+                            Osteonas vs trabéculas y clasificación de los huesos según su geometría.
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        La arquitectura del hueso responde a requerimientos biomecánicos precisos: el <strong>hueso compacto</strong> provee rigidez cortical diafisaria mediante osteonas (sistemas de Havers), mientras que el <strong>hueso esponjoso</strong> distribuye tensiones articulares multidireccionales mediante su red de trabéculas. Morfológicamente, los 206 huesos del cuerpo se agrupan en cinco categorías geométricas.
+                    </p>
+                </div>
+
+                <!-- Comparativa Cortical vs Trabecular -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 space-y-2">
+                        <span class="text-[10px] font-bold text-accent bg-accent-light px-2.5 py-0.5 rounded-full uppercase border border-accent/20">Arquitectura Cortical</span>
+                        <h3 class="text-sm font-bold text-gray-800 flex items-center gap-1.5"><i class="fa-solid fa-circle-dot text-accent"></i> Tejido Óseo Compacto (Osteonas)</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Formado por unidades cilíndricas llamadas <strong>Osteonas o Sistemas de Havers</strong>, con conductos centrales longitudinales de Havers y transversales de Volkmann. Aporta máxima resistencia frente a flexión y compresión longitudinal en la diáfisis.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 space-y-2">
+                        <span class="text-[10px] font-bold text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded-full uppercase border border-rose-200">Arquitectura Trabecular</span>
+                        <h3 class="text-sm font-bold text-gray-800 flex items-center gap-1.5"><i class="fa-solid fa-network-wired text-rose-600"></i> Tejido Óseo Esponjoso (Trabéculas)</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Constituido por una red tridimensional de <strong>trabéculas</strong> orientadas según los vectores de fuerza y compresión articular. Alberga médula ósea roja y reduce el peso corporal sin perder disipación de impacto.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Taller de Clasificación por Forma -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-gray-100 pb-3">
+                        <div>
+                            <h3 class="text-sm font-bold text-gray-800 flex items-center gap-2">
+                                <i class="fa-solid fa-cubes-stacked text-accent"></i>
+                                Taller de Clasificación de Huesos por su Forma Geométrica
+                            </h3>
+                            <span class="text-xs text-gray-500">Asigna cada hueso a su grupo taxonómico correspondiente.</span>
+                        </div>
+                        <button onclick="checkMorphologyGame()" class="px-3.5 py-1.5 bg-accent hover:bg-accent-dark text-white text-xs font-semibold rounded-lg shadow-sm transition">
+                            <i class="fa-solid fa-check mr-1"></i> Verificar Ubicación
+                        </button>
+                    </div>
+
+                    <!-- 5 Casillas de Destino -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5" id="dropzonesContainer">
+                        <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-2.5 min-h-[140px] flex flex-col items-center">
+                            <h5 class="text-xs font-bold text-gray-800 text-center">Largos</h5>
+                            <span class="text-[9px] text-gray-400 text-center mb-1.5">Longitud predomina</span>
+                            <div class="category-slot w-full space-y-1 flex-1" id="slot-largo"></div>
+                        </div>
+
+                        <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-2.5 min-h-[140px] flex flex-col items-center">
+                            <h5 class="text-xs font-bold text-gray-800 text-center">Cortos</h5>
+                            <span class="text-[9px] text-gray-400 text-center mb-1.5">Cuboideos</span>
+                            <div class="category-slot w-full space-y-1 flex-1" id="slot-corto"></div>
+                        </div>
+
+                        <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-2.5 min-h-[140px] flex flex-col items-center">
+                            <h5 class="text-xs font-bold text-gray-800 text-center">Planos</h5>
+                            <span class="text-[9px] text-gray-400 text-center mb-1.5">Delgados / Díploe</span>
+                            <div class="category-slot w-full space-y-1 flex-1" id="slot-plano"></div>
+                        </div>
+
+                        <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-2.5 min-h-[140px] flex flex-col items-center">
+                            <h5 class="text-xs font-bold text-gray-800 text-center">Irregulares</h5>
+                            <span class="text-[9px] text-gray-400 text-center mb-1.5">Formas complejas</span>
+                            <div class="category-slot w-full space-y-1 flex-1" id="slot-irregular"></div>
+                        </div>
+
+                        <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-2.5 min-h-[140px] flex flex-col items-center">
+                            <h5 class="text-xs font-bold text-gray-800 text-center">Sesamoideos</h5>
+                            <span class="text-[9px] text-gray-400 text-center mb-1.5">En tendones</span>
+                            <div class="category-slot w-full space-y-1 flex-1" id="slot-sesamoideo"></div>
+                        </div>
+                    </div>
+
+                    <!-- Banco de Huesos -->
+                    <div class="bg-gray-50 p-3 rounded-xl border border-gray-200">
+                        <div class="text-xs font-bold text-gray-700 mb-2 flex items-center justify-between">
+                            <span>Haz clic en cada hueso para moverlo al casillero deseado:</span>
+                            <span class="text-[10px] text-gray-400 font-normal">Haz clic en un casillero para devolverlo aquí</span>
+                        </div>
+                        <div id="bonesClassificationPool" class="flex flex-wrap gap-2"></div>
+                    </div>
+
+                    <div id="morphGameFeedback" class="hidden mt-2 p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 MÓDULO 4: ESQUELETO AXIAL VS APENDICULAR
+                 ========================================== -->
+            <section id="tab-division" class="space-y-6 hidden">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-4 mb-4">
+                        <div>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-accent bg-accent-light px-2.5 py-1 rounded-md">Módulo 4</span>
+                            <h2 class="text-xl font-bold text-gray-800 mt-1">División del Sistema Esquelético (Total: 206 Huesos)</h2>
+                        </div>
+                        <div class="text-xs text-gray-500 max-w-xs">
+                            Esqueleto Axial (80 huesos) y Esqueleto Apendicular (126 huesos).
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        El cuerpo humano adulto consta de 206 huesos organizados en dos grandes divisiones funcionales: el <strong>Esqueleto Axial</strong> (80 huesos), que resguarda el eje central y cavidades viscerales, y el <strong>Esqueleto Apendicular</strong> (126 huesos), compuesto por las cinturas escapular y pélvica y las extremidades superiores e inferiores especializadas en la locomoción y la prensión.
+                    </p>
+                </div>
+
+                <!-- Cuadros Descriptivos -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <!-- Esqueleto Axial -->
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-brain text-accent"></i> Esqueleto Axial (Eje Central)
+                            </h3>
+                            <span class="text-xs font-bold text-accent bg-accent-light px-2.5 py-0.5 rounded-full border border-accent/20">80 / 206</span>
+                        </div>
+                        <div class="space-y-1.5 text-gray-700">
+                            <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100">
+                                <span>Cabeza Ósea (Cráneo [8] + Cara [14])</span>
+                                <strong>22</strong>
+                            </div>
+                            <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100">
+                                <span>Huesecillos del oído medio (3 por oído)</span>
+                                <strong>6</strong>
+                            </div>
+                            <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100">
+                                <span>Hueso Hioides (en cuello)</span>
+                                <strong>1</strong>
+                            </div>
+                            <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100">
+                                <span>Columna Vertebral (7C + 12T + 5L + Sacro + Cóccix)</span>
+                                <strong>26</strong>
+                            </div>
+                            <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100">
+                                <span>Tórax (Esternón [1] + Costillas [24: 12 pares])</span>
+                                <strong>25</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Esqueleto Apendicular -->
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-person-walking text-emerald-700"></i> Esqueleto Apendicular (Extremidades)
+                            </h3>
+                            <span class="text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">126 / 206</span>
+                        </div>
+                        <div class="space-y-1.5 text-gray-700">
+                            <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100">
+                                <span>Cintura Escapular (Clavículas [2] + Escápulas [2])</span>
+                                <strong>4</strong>
+                            </div>
+                            <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100">
+                                <span>Miembros Superiores (Húmero, Cúbito, Radio, Carpo, etc.)</span>
+                                <strong>60</strong>
+                            </div>
+                            <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100">
+                                <span>Cintura Pélvica (Huesos Coxales)</span>
+                                <strong>2</strong>
+                            </div>
+                            <div class="flex justify-between p-2 bg-gray-50 rounded border border-gray-100">
+                                <span>Miembros Inferiores (Fémur, Rótula, Tibia, Peroné, Tarso, etc.)</span>
+                                <strong>60</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Explorador Interactivo -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center max-w-lg mx-auto space-y-4">
+                    <span class="text-[10px] font-bold uppercase text-accent bg-accent-light px-2.5 py-1 rounded-full border border-accent/20">
+                        Explorador Anatómico Interactivo
+                    </span>
+                    <h3 class="text-base font-bold text-gray-800">¿Esqueleto Axial o Apendicular?</h3>
+                    
+                    <div class="p-4 bg-gray-50 rounded-xl border border-gray-200 relative min-h-[100px] flex flex-col justify-center items-center">
+                        <span class="text-[10px] text-gray-400 font-bold uppercase">Estructura Anatómica:</span>
+                        <div id="axialGameBoneName" class="text-xl font-extrabold text-accent mt-1">Esternón</div>
+                        <div id="axialGameBoneHint" class="text-xs text-gray-500 mt-0.5">Hueso plano anterior de la caja torácica.</div>
+                        <div id="axialRoundFeedback" class="absolute inset-0 bg-white/95 rounded-xl flex items-center justify-center font-bold text-xs hidden"></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="answerAxialGame('axial')" class="p-3 bg-accent hover:bg-accent-dark text-white rounded-xl font-bold text-xs shadow-sm transition flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-shield"></i> Esqueleto AXIAL
+                        </button>
+                        <button onclick="answerAxialGame('apendicular')" class="p-3 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold text-xs shadow-sm transition flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-person-walking"></i> Esqueleto APENDICULAR
+                        </button>
+                    </div>
+
+                    <div class="flex items-center justify-center text-xs text-gray-500 pt-2 border-t border-gray-100">
+                        <span>Estructura mostrada: <strong id="axialCurrentIndex" class="text-accent">1</strong> de 8</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 MÓDULO 5: CASOS CLÍNICOS KINESIOLÓGICOS
+                 ========================================== -->
+            <section id="tab-casos" class="space-y-6 hidden">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-4 mb-4">
+                        <div>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-accent bg-accent-light px-2.5 py-1 rounded-md">Módulo 5</span>
+                            <h2 class="text-xl font-bold text-gray-800 mt-1">Casos Clínicos: Razonamiento Biomecánico y Terapéutico</h2>
+                        </div>
+                        <div class="text-xs text-gray-500 max-w-xs">
+                            Aplicación práctica en rehabilitación articular y osteología kinesiológica.
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Analizá las siguientes situaciones clínicas del ámbito kinesiológico aplicando los fundamentos de la histología ósea, la transmisión de fuerzas y la arquitectura del esqueleto:
+                    </p>
+                </div>
+
+                <div class="space-y-4 text-xs">
+                    <!-- Caso 1 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-accent text-sm">Caso 1: Resorción Ósea y Rehabilitación en Encamamiento</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 bg-accent-light text-accent rounded-full border border-accent/20">Ley de Wolff</span>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">
+                            Un paciente permanece 6 semanas inmovilizado tras una intervención quirúrgica compleja. Al iniciar el plan de marcha en kinesiología, presenta fragilidad ósea y disminución de densidad mineral:
+                        </p>
+                        <strong class="block text-gray-800">¿Qué mecanismo celular explica este cuadro y cómo actúa la kinesiterapia de carga progresiva?</strong>
+                        <div class="space-y-2 pt-1">
+                            <button onclick="checkCaseU501(1, 'A')" class="w-full p-2.5 rounded-xl border border-gray-200 hover:border-accent text-left transition bg-gray-50">
+                                A) Por desuso predominaron los osteoclastos reabsorbiendo matriz ósea; la kinesiterapia aplica microdeformaciones mecánicas que los osteocitos detectan para reclutar osteoblastos formadores.
+                            </button>
+                            <button onclick="checkCaseU501(1, 'B')" class="w-full p-2.5 rounded-xl border border-gray-200 hover:border-accent text-left transition bg-gray-50">
+                                B) Los osteocitos se destruyen de forma irreversible con el reposo y solo pueden sustituirse por cartílago hialino elástico.
+                            </button>
+                        </div>
+                        <div id="feedback-u501-1" class="hidden mt-2 p-3 rounded-xl text-xs leading-relaxed"></div>
+                    </div>
+
+                    <!-- Caso 2 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-accent text-sm">Caso 2: Ventaja Mecánica de la Rótula en la Extensión de Rodilla</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 bg-accent-light text-accent rounded-full border border-accent/20">Hueso Sesamoideo</span>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">
+                            Durante la rehabilitación de una meniscopatía, el kinesiólogo evalúa el torque del músculo cuádriceps femoral durante los últimos 30 grados de extensión activa de rodilla:
+                        </p>
+                        <strong class="block text-gray-800">¿Cuál es el aporte biomecánico de la rótula como hueso sesamoideo en el tendón cuadricipital?</strong>
+                        <div class="space-y-2 pt-1">
+                            <button onclick="checkCaseU501(2, 'A')" class="w-full p-2.5 rounded-xl border border-gray-200 hover:border-accent text-left transition bg-gray-50">
+                                A) Desplaza el tendón hacia adelante, aumentando el brazo de palanca del cuádriceps y optimizando el torque extensor con menor esfuerzo muscular.
+                            </button>
+                            <button onclick="checkCaseU501(2, 'B')" class="w-full p-2.5 rounded-xl border border-gray-200 hover:border-accent text-left transition bg-gray-50">
+                                B) Anula por completo el momento de fuerza para evitar que la tibia se desplace hacia posterior durante la flexión.
+                            </button>
+                        </div>
+                        <div id="feedback-u501-2" class="hidden mt-2 p-3 rounded-xl text-xs leading-relaxed"></div>
+                    </div>
+
+                    <!-- Caso 3 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-accent text-sm">Caso 3: Distribución de Cargas en Epífisis Femoral y Artrosis</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 bg-accent-light text-accent rounded-full border border-accent/20">Tejido Esponjoso</span>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">
+                            En un paciente con gonartrosis medial por deformidad en genu varo, la meseta tibial interna soporta una sobrecarga de compresión anormal:
+                        </p>
+                        <strong class="block text-gray-800">¿Cómo responden las trabéculas del hueso esponjoso epifisario ante esta sobrecarga focalizada?</strong>
+                        <div class="space-y-2 pt-1">
+                            <button onclick="checkCaseU501(3, 'A')" class="w-full p-2.5 rounded-xl border border-gray-200 hover:border-accent text-left transition bg-gray-50">
+                                A) Se reorientan y condensan formando esclerosis subcondral para disipar las líneas de fuerza aumentadas en el compartimento afectado.
+                            </button>
+                            <button onclick="checkCaseU501(3, 'B')" class="w-full p-2.5 rounded-xl border border-gray-200 hover:border-accent text-left transition bg-gray-50">
+                                B) Pierden toda su médula ósea roja transformándose instantáneamente en tejido conectivo laxo.
+                            </button>
+                        </div>
+                        <div id="feedback-u501-3" class="hidden mt-2 p-3 rounded-xl text-xs leading-relaxed"></div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Modal: Guía de Uso del Simulador y Orientación Pedagógica -->
+    <div id="modal-tutorial" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white max-w-3xl w-full rounded-2xl shadow-xl overflow-hidden flex flex-col max-h-[90vh]">
+            <div class="bg-accent p-4 text-white flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap text-xl"></i>
+                    <h3 class="font-bold text-base">Guía de Uso del Simulador y Orientación Pedagógica</h3>
+                </div>
+                <button onclick="closeTutorial()" class="text-white hover:text-gray-200 transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto space-y-5 text-xs md:text-sm text-gray-600 custom-scroll leading-relaxed">
+                <div>
+                    <h4 class="font-bold text-gray-800 text-sm mb-1 text-accent flex items-center gap-2">
+                        <i class="fa-solid fa-bullseye"></i> 1. Propósito Tecnopedagógico
+                    </h4>
+                    <p>
+                        Este simulador interactivo está desarrollado especialmente para estudiantes ingresantes a la <strong>Licenciatura en Kinesiología y Fisiatría (Facultad de Ciencias Médicas - Universidad Católica de Cuyo)</strong>. Su objetivo es integrar la comprensión de la <strong>osteología funcional</strong>, la <strong>histología y remodelación ósea</strong>, la <strong>diferenciación cortical/trabecular</strong> y la <strong>división del esqueleto</strong> con los fundamentos de la biomecánica de palancas, la Ley de Wolff y el razonamiento clínico en rehabilitación articular.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 text-sm mb-2 text-accent flex items-center gap-2">
+                        <i class="fa-solid fa-compass"></i> 2. Guía Detallada de Módulos y Herramientas Interactivas
+                    </h4>
+                    
+                    <div class="space-y-3">
+                        <div class="bg-gray-50 p-3.5 rounded-xl border border-gray-200">
+                            <span class="font-bold text-gray-800 text-xs text-accent">Módulo 1: Funciones Sistémicas y Anatomía del Hueso Largo</span>
+                            <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                                • <strong>Funciones Esqueléticas:</strong> Explorá las 5 funciones clave (sostén, protección, palancas biomecánicas, homeostasis de calcio/fósforo y hematopoyesis en médula roja vs almacenamiento de triglicéridos en médula amarilla).<br>
+                                • <strong>Canvas Interactivo de Fémur:</strong> Seleccioná interactivamente la <em>Epífisis Proximal</em>, <em>Metáfisis (línea epifisaria)</em>, <em>Diáfisis (corteza compacta y canal medular)</em>, <em>Periostio vascularizado</em> y <em>Epífisis Distal (cóndilos)</em> para analizar su microestructura y correlato clínico.
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-50 p-3.5 rounded-xl border border-gray-200">
+                            <span class="font-bold text-gray-800 text-xs text-accent">Módulo 2: Histología Ósea y Dinámica Celular (Ley de Wolff)</span>
+                            <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                                • <strong>Matriz Calcificada:</strong> Detalle porcentual de agua (~15%), colágeno tipo I (~30%) y cristales de hidroxiapatita (~55%), junto con las 4 líneas celulares (células osteogénicas, osteoblastos, osteocitos y osteoclastos).<br>
+                                • <strong>Simulador Dinámico en Canvas:</strong> Aplicá en tiempo real <em>Carga Mecánica / Ejercicio</em> (activa osteoblastos y aumenta densidad), <em>Inmovilización / Encamamiento</em> (resorción osteoclástica y osteopenia por desuso) o <em>Rehabilitación Kinésica Gradual</em> (restituye el equilibrio fisiológico).
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-50 p-3.5 rounded-xl border border-gray-200">
+                            <span class="font-bold text-gray-800 text-xs text-accent">Módulo 3: Tejidos y Clasificación Morfológica</span>
+                            <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                                • <strong>Cortical vs Trabecular:</strong> Comparativa entre el tejido compacto (osteonas, Havers y Volkmann) y el tejido esponjoso (trabéculas alineadas con vectores de carga articular).<br>
+                                • <strong>Taller Morfológico:</strong> Clasificá 8 piezas óseas representativas arrastrándolas o asignándolas a sus casilleros de <em>Largos</em>, <em>Cortos</em>, <em>Planos</em>, <em>Irregulares</em> y <em>Sesamoideos</em> con validación conceptual inmediata.
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-50 p-3.5 rounded-xl border border-gray-200">
+                            <span class="font-bold text-gray-800 text-xs text-accent">Módulo 4: Esqueleto Axial vs Apendicular (206 Huesos)</span>
+                            <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                                • <strong>Desglose Numérico Estructurado:</strong> Organización de los 80 huesos del eje axial (cabeza, hioides, huesecillos del oído, columna vertebral y tórax) y los 126 del esqueleto apendicular (cinturas escapular/pélvica y extremidades).<br>
+                                • <strong>Explorador Interactivo:</strong> Identificá la pertenencia esqueletaria de huesos anatómicos clave con retroalimentación inmediata.
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-50 p-3.5 rounded-xl border border-gray-200">
+                            <span class="font-bold text-gray-800 text-xs text-accent">Módulo 5: Casos Clínicos Kinesiológicos</span>
+                            <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                                • <strong>Razonamiento Fisiátrico Aplicado:</strong> Análisis de tres escenarios clínicos sobre osteoporosis por desuso tras inmovilización, ventaja mecánica y torque del cuádriceps gracias a la rótula, y esclerosis subcondral adaptativa en gonartrosis de rodilla.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 text-sm mb-1 text-accent flex items-center gap-2">
+                        <i class="fa-solid fa-lightbulb"></i> 3. Navegación Libre y Aprendizaje Autónomo
+                    </h4>
+                    <p>
+                        El simulador sigue el estándar formativo universitario de la UCCuyo: sin penalizaciones punitivas, restricciones ni cronómetros. Podés alternar libremente entre pestañas y experimentar con los modelos anatómicos cuantas veces lo requieras para consolidar tu aprendizaje.
+                    </p>
+                </div>
+            </div>
+
+            <div class="p-4 bg-gray-50 border-t border-gray-100 flex justify-end">
+                <button onclick="closeTutorial()" class="px-4 py-2 bg-accent text-white rounded-xl text-xs font-semibold hover:bg-accent-hover transition">
+                    Entendido, comenzar exploración
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de Página Institucional -->
+    <footer class="bg-white border-t border-gray-200 py-4 text-center text-xs text-gray-500 mt-12">
+        <p>Desarrollado por vesalio - Todos los derechos reservados</p>
+    </footer>
+
+    <!-- Lógica de la Aplicación en JavaScript -->
+    <script>
+        const appState = {
+            currentTab: 'tab-functions',
+            boneViewMode: 'corte', // 'corte' | 'cargas' | 'vascular'
+            selectedBonePart: 'epifisis-prox',
+            axialGameIndex: 0,
+            boneDensity: 100,
+            remodelingMode: 'reposo'
+        };
+
+        function openTutorial() {
+            document.getElementById('modal-tutorial').classList.remove('hidden');
+        }
+
+        function closeTutorial() {
+            document.getElementById('modal-tutorial').classList.add('hidden');
+        }
+
+        function switchTab(tabId) {
+            const tabs = ['tab-functions', 'tab-histology', 'tab-tissue', 'tab-division', 'tab-casos'];
+            const buttons = ['btn-tab-functions', 'btn-tab-histology', 'btn-tab-tissue', 'btn-tab-division', 'btn-tab-casos'];
+
+            tabs.forEach(t => {
+                const el = document.getElementById(t);
+                if (el) el.classList.add('hidden');
+            });
+
+            buttons.forEach(b => {
+                const btn = document.getElementById(b);
+                if (btn) {
+                    btn.className = 'text-gray-700 hover:bg-gray-100 flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-medium transition';
+                }
+            });
+
+            const activeSection = document.getElementById(tabId);
+            const activeBtn = document.getElementById(`btn-${tabId}`);
+
+            if (activeSection) activeSection.classList.remove('hidden');
+            if (activeBtn) {
+                activeBtn.className = 'bg-accent text-white flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-semibold transition shadow-sm';
+            }
+
+            appState.currentTab = tabId;
+        }
+
+        const functionData = {
+            1: {
+                title: "1. Sostén de Tejidos Blandos y Estructura",
+                icon: "fa-solid fa-cubes",
+                desc: "El esqueleto constituye el armazón estructural del organismo. Sostiene los tejidos blandos (músculos, vísceras, vasos sanguíneos) y provee puntos de inserción ligamentosa y aponeurótica esenciales para mantener la postura erecta bípeda estudiada en Kinesiología."
+            },
+            2: {
+                title: "2. Protección de Órganos Vitales y Cavidades",
+                icon: "fa-solid fa-shield",
+                desc: "Los huesos forman cavidades rígidas protectoras: la cavidad craneal resguarda el encéfalo, la columna vertebral protege a la médula espinal de impactos mecánicos, y la caja torácica (esternón y costillas) rodea y protege al corazón y pulmones."
+            },
+            3: {
+                title: "3. Asistencia al Movimiento (Sistemas de Palancas)",
+                icon: "fa-solid fa-person-running",
+                desc: "En kinesiología, los huesos actúan como <strong>brazos de palanca rígidos</strong>. Los músculos esqueléticos se insertan a través de sus tendones, y al contraerse generan un momento de fuerza (torque) alrededor de los ejes articulares. Sin la rigidez ósea, la transmisión de fuerza sería ineficiente e incapaz de generar marcha o prensión."
+            },
+            4: {
+                title: "4. Homeostasis y Depósito Mineral (Calcio y Fósforo)",
+                icon: "fa-solid fa-scale-balanced",
+                desc: "El tejido óseo almacena cerca del 99% del calcio corporal y gran parte del fósforo (en cristales de hidroxiapatita). Bajo regulación hormonal (paratohormona y calcitonina), el hueso libera minerales al torrente sanguíneo para mantener constante la concentración plasmática requerida para la contracción muscular y la transmisión neural."
+            },
+            5: {
+                title: "5. Hematopoyesis y Almacenamiento de Triglicéridos",
+                icon: "fa-solid fa-droplet",
+                desc: "En el hueso esponjoso se encuentra la Médula Ósea Roja, encargada de la producción de glóbulos rojos, glóbulos blancos y plaquetas (hematopoyesis). Por su parte, en la cavidad medular diafisaria de los adultos predomina la Médula Ósea Amarilla, constituida por adipocitos que almacenan triglicéridos como reserva energética."
+            }
+        };
+
+        function selectFunction(id) {
+            for (let i = 1; i <= 5; i++) {
+                const card = document.getElementById(`fn-card-${i}`);
+                if (card) {
+                    if (i === id) {
+                        card.className = "p-3.5 text-left rounded-xl border-2 border-accent bg-accent-light text-accent font-bold text-xs flex flex-col gap-1 transition shadow-xs";
+                    } else {
+                        card.className = "p-3.5 text-left rounded-xl border border-gray-200 hover:border-gray-300 text-gray-700 font-bold text-xs flex flex-col gap-1 transition";
+                    }
+                }
+            }
+
+            const info = functionData[id];
+            document.getElementById('fnDetailTitle').innerText = info.title;
+            document.getElementById('fnDetailIcon').className = `${info.icon} text-accent text-base`;
+            document.getElementById('fnDetailText').innerHTML = info.desc;
+        }
+
+        const bonePartsData = {
+            'epifisis-prox': {
+                badge: "Epífisis Proximal",
+                marker: "Extremo Superior Articular",
+                title: "Epífisis Proximal: Cabeza, Cuello y Médula Ósea Roja",
+                desc: "Extremo proximal ensanchado del fémur articulado en la articulación coxofemoral (enartrosis). Su arquitectura interna está conformada por <strong>tejido óseo esponjoso (trabecular)</strong> que aloja <strong>médula ósea roja hematopoyética</strong> y disipa las enormes fuerzas de compresión originadas por la marcha y el apoyo monopodal.",
+                clinical: "En adultos mayores y pacientes con osteoporosis, el adelgazamiento del sistema trabecular del cuello femoral genera una zona de alta vulnerabilidad a fracturas ante caídas leves.",
+                statTissue: "Esponjoso (Trabecular) + Cartílago Hialino",
+                statStress: "Compresión y Cizallamiento Articular"
+            },
+            'metafisis': {
+                badge: "Metáfisis",
+                marker: "Zona de Transición y Crecimiento",
+                title: "Metáfisis: Placa / Línea Epifisaria de Crecimiento",
+                desc: "Zona de transición anatómica entre la epífisis y la diáfisis. Durante la infancia y adolescencia contiene la <strong>placa epifisaria (cartílago de crecimiento)</strong> donde ocurre la osificación endocondral. En el adulto se convierte en la <strong>línea epifisaria osificada</strong>.",
+                clinical: "Las lesiones traumáticas o sobrecargas deportivas en el cartílago de crecimiento (epifisiólisis) en atletas jóvenes pueden alterar el desarrollo longitudinal normal de la extremidad.",
+                statTissue: "Zona de Transición / Cartílago Osificado",
+                statStress: "Tracción y Modelado Longitudinal"
+            },
+            'diafisis': {
+                badge: "Diáfisis",
+                marker: "Cuerpo Cilíndrico Cortical",
+                title: "Diáfisis: Corteza Compacta y Canal Medular Diafisario",
+                desc: "Cuerpo cilíndrico del hueso. Presenta una gruesa pared de <strong>tejido óseo compacto</strong> organizado en <strong>osteonas (sistemas de Havers)</strong> que resiste flexión, compresión longitudinal y torsión. En su interior se encuentra la cavidad medular revestida de endostio y colmada de <strong>médula ósea amarilla</strong> (reserva de triglicéridos en adipocitos).",
+                clinical: "La geometría tubular hueca de la diáfisis proporciona la máxima resistencia biomecánica con el mínimo peso óseo, optimizando el rendimiento cinético y muscular.",
+                statTissue: "Hueso Compacto (Sistemas de Havers)",
+                statStress: "Torsión, Tensión y Flexión"
+            },
+            'periostio': {
+                badge: "Periostio",
+                marker: "Membrana Fibrosa y Vascular",
+                title: "Periostio: Membrana Vascularizada e Inervada",
+                desc: "Membrana de tejido conectivo denso que recubre todo el hueso excepto en las carillas articulares. Está ricamente inervada por <strong>fibras nociceptivas</strong> y vascularizada por <strong>arterias periósticas</strong> que penetran por conductos de Volkmann. Su capa osteogénica profunda aporta osteoblastos para el crecimiento en espesor y la consolidación de fracturas.",
+                clinical: "El dolor agudo de alta intensidad ante un traumatismo o fractura es mediado por la rica red sensitiva del periostio, esencial para la evaluación clínica del kinesiólogo.",
+                statTissue: "Conectivo Denso Vascularizado e Inervado",
+                statStress: "Anclaje Tendinoso y Resistencia Tensional"
+            },
+            'epifisis-dist': {
+                badge: "Epífisis Distal",
+                marker: "Extremo Inferior (Cóndilos Femorales)",
+                title: "Epífisis Distal: Cóndilos Femorales y Fosa Intercondílea",
+                desc: "Extremo distal ensanchado del fémur formado por los cóndilos medial y lateral, revestidos por <strong>cartílago articular hialino</strong> liso. Transmite el peso corporal directamente hacia los platillos tibiales y la rótula en la articulación de la rodilla.",
+                clinical: "Alteraciones en el eje de carga (genu valgo o genu varo) provocan sobrecargas compresivas asimétricas en los cóndilos, acelerando el desgaste del cartílago y la artrosis femorotibial.",
+                statTissue: "Esponjoso Subcondral + Cartílago Hialino",
+                statStress: "Transmisión y Amortiguación de Cargas a Rodilla"
+            }
+        };
+
+        function setBoneViewMode(mode) {
+            appState.boneViewMode = mode;
+            ['corte', 'cargas', 'vascular'].forEach(m => {
+                const btn = document.getElementById(`btn-mode-${m}`);
+                if (btn) {
+                    if (m === mode) {
+                        btn.className = "px-2.5 py-1 rounded-lg font-bold bg-accent text-white shadow-xs transition";
+                    } else {
+                        btn.className = "px-2.5 py-1 rounded-lg font-semibold text-gray-600 hover:bg-gray-200 transition";
+                    }
+                }
+            });
+        }
+
+        function inspectBonePart(key) {
+            appState.selectedBonePart = key;
+            const data = bonePartsData[key];
+            if (!data) return;
+
+            document.getElementById('inspectBadge').innerText = data.badge;
+            document.getElementById('inspectMarker').innerText = data.marker;
+            document.getElementById('inspectTitle').innerText = data.title;
+            document.getElementById('inspectDescription').innerHTML = data.desc;
+            document.getElementById('inspectClinical').innerHTML = data.clinical;
+            document.getElementById('boneStatTissue').innerText = data.statTissue;
+            document.getElementById('boneStatStress').innerText = data.statStress;
+
+            ['epifisis-prox', 'metafisis', 'diafisis', 'periostio', 'epifisis-dist'].forEach(k => {
+                const btn = document.getElementById(`btn-part-${k}`);
+                if (btn) {
+                    if (k === key) {
+                        btn.className = "px-3 py-1.5 bg-accent text-white rounded-xl text-xs font-semibold shadow-xs transition";
+                    } else {
+                        btn.className = "px-3 py-1.5 bg-gray-100 text-gray-700 rounded-xl text-xs font-semibold border border-gray-200 hover:bg-gray-200 transition";
+                    }
+                }
+            });
+        }
+
+        function applyRemodelingStress(type) {
+            appState.remodelingMode = type;
+            const densityVal = document.getElementById('boneDensityValue');
+            const stateVal = document.getElementById('remodelingState');
+            const feedback = document.getElementById('remodelingFeedback');
+
+            if (type === 'exercise') {
+                appState.boneDensity = Math.min(130, appState.boneDensity + 10);
+                densityVal.innerText = `${appState.boneDensity}% (Fortalecido)`;
+                densityVal.className = "text-accent font-bold";
+                stateVal.innerText = "Predomina Osteogénesis";
+                stateVal.className = "text-emerald-700 font-bold";
+                feedback.innerHTML = "<strong>Ley de Wolff activa:</strong> Las cargas mecánicas generan microdeformaciones. Los osteocitos las detectan y reclutan osteoblastos para mineralizar más matriz y aumentar la densidad ósea trabecular.";
+            } else if (type === 'bedrest') {
+                appState.boneDensity = Math.max(70, appState.boneDensity - 15);
+                densityVal.innerText = `${appState.boneDensity}% (Osteopenia)`;
+                densityVal.className = "text-rose-600 font-bold";
+                stateVal.innerText = "Predomina Resorción";
+                stateVal.className = "text-rose-600 font-bold";
+                feedback.innerHTML = "<strong>Desuso e inmovilización:</strong> Sin carga mecánica ni tracción tendinosa, los osteoclastos destruyen matriz ósea a mayor ritmo que el depósito mineral, debilitando las trabéculas.";
+            } else if (type === 'kine_rehab') {
+                appState.boneDensity = 100;
+                densityVal.innerText = "100% (Normal)";
+                densityVal.className = "text-accent font-bold";
+                stateVal.innerText = "Equilibrio Fisiológico";
+                stateVal.className = "text-emerald-700 font-bold";
+                feedback.innerHTML = "<strong>Intervención Kinesiológica:</strong> La carga progresiva y controlada restauró el equilibrio entre la síntesis de osteoblastos y la resorción de osteoclastos.";
+            }
+        }
+
+        const initialBonesPool = [
+            { id: 'b1', name: 'Fémur', category: 'largo' },
+            { id: 'b2', name: 'Escápula (Omóplato)', category: 'plano' },
+            { id: 'b3', name: 'Huesos del Carpo', category: 'corto' },
+            { id: 'b4', name: 'Vértebras Lumbares', category: 'irregular' },
+            { id: 'b5', name: 'Rótula (Patela)', category: 'sesamoideo' },
+            { id: 'b6', name: 'Húmero', category: 'largo' },
+            { id: 'b7', name: 'Esternón', category: 'plano' },
+            { id: 'b8', name: 'Esfenoides', category: 'irregular' }
+        ];
+
+        let currentPool = [...initialBonesPool];
+        let slotsState = {
+            largo: [],
+            corto: [],
+            plano: [],
+            irregular: [],
+            sesamoideo: []
+        };
+
+        function renderMorphologyGame() {
+            const poolContainer = document.getElementById('bonesClassificationPool');
+            poolContainer.innerHTML = '';
+
+            if (currentPool.length === 0) {
+                poolContainer.innerHTML = '<span class="text-xs text-gray-400 italic">Todos los huesos han sido asignados. Haz clic en "Verificar Ubicación".</span>';
+            }
+
+            currentPool.forEach(bone => {
+                const chip = document.createElement('div');
+                chip.className = "px-2.5 py-1.5 bg-white border border-gray-300 hover:border-accent rounded-lg text-xs font-semibold text-gray-700 shadow-xs cursor-pointer hover:bg-accent-light transition flex items-center gap-1.5";
+                chip.innerHTML = `<i class="fa-solid fa-bone text-accent text-xs"></i> ${bone.name}`;
+                chip.onclick = () => assignBoneModal(bone);
+                poolContainer.appendChild(chip);
+            });
+
+            ['largo', 'corto', 'plano', 'irregular', 'sesamoideo'].forEach(cat => {
+                const slotEl = document.getElementById(`slot-${cat}`);
+                slotEl.innerHTML = '';
+                slotsState[cat].forEach(bone => {
+                    const item = document.createElement('div');
+                    item.className = "px-2 py-1 bg-white border border-gray-200 hover:border-rose-400 rounded text-[10px] font-semibold text-gray-800 shadow-xs flex items-center justify-between cursor-pointer group";
+                    item.innerHTML = `<span>${bone.name}</span> <i class="fa-solid fa-xmark text-gray-400 group-hover:text-rose-500"></i>`;
+                    item.onclick = () => returnBoneToPool(bone, cat);
+                    slotEl.appendChild(item);
+                });
+            });
+        }
+
+        function assignBoneModal(bone) {
+            const targetCategory = prompt(
+                `Asigna "${bone.name}" a una categoría:\n1: Largo\n2: Corto\n3: Plano\n4: Irregular\n5: Sesamoideo`,
+                "1"
+            );
+            const catMap = { '1': 'largo', '2': 'corto', '3': 'plano', '4': 'irregular', '5': 'sesamoideo' };
+            const selected = catMap[targetCategory] || 'largo';
+
+            currentPool = currentPool.filter(b => b.id !== bone.id);
+            slotsState[selected].push(bone);
+            renderMorphologyGame();
+        }
+
+        function returnBoneToPool(bone, currentCat) {
+            slotsState[currentCat] = slotsState[currentCat].filter(b => b.id !== bone.id);
+            currentPool.push(bone);
+            renderMorphologyGame();
+        }
+
+        function checkMorphologyGame() {
+            let mistakes = 0;
+            let totalAssigned = 0;
+
+            Object.keys(slotsState).forEach(cat => {
+                slotsState[cat].forEach(bone => {
+                    totalAssigned++;
+                    if (bone.category !== cat) mistakes++;
+                });
+            });
+
+            const feedback = document.getElementById('morphGameFeedback');
+            feedback.classList.remove('hidden');
+
+            if (totalAssigned < initialBonesPool.length) {
+                feedback.className = "mt-2 p-2.5 rounded-lg text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200";
+                feedback.innerHTML = "Aún quedan huesos en el banco sin ubicar. Completa todos antes de verificar.";
+                return;
+            }
+
+            if (mistakes === 0) {
+                feedback.className = "mt-2 p-2.5 rounded-lg text-xs font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200";
+                feedback.innerHTML = "¡Excelente! Has clasificado los 8 huesos de acuerdo a su geometría morfológica.";
+            } else {
+                feedback.className = "mt-2 p-2.5 rounded-lg text-xs font-semibold text-rose-800 bg-rose-50 border border-rose-200";
+                feedback.innerHTML = `Tienes ${mistakes} hueso(s) en la categoría incorrecta. Recuerda: la patela es sesamoidea (dentro de tendón) y las vértebras son irregulares.`;
+            }
+        }
+
+        const axialGameQuestions = [
+            { name: "Esternón", hint: "Hueso plano anterior de la caja torácica.", type: "axial" },
+            { name: "Fémur", hint: "Hueso largo de la extremidad inferior que articula en la cadera.", type: "apendicular" },
+            { name: "Hueso Hioides", hint: "Hueso del cuello que no se articula directamente con ningún otro.", type: "axial" },
+            { name: "Escápula (Omóplato)", hint: "Hueso de la cintura escapular que conecta el miembro superior al tórax.", type: "apendicular" },
+            { name: "Vértebra Axis (C2)", hint: "Segunda vértebra cervical que permite la rotación de la cabeza.", type: "axial" },
+            { name: "Hueso Coxal (Ilion, Isquion, Pubis)", hint: "Componente de la cintura pélvica.", type: "apendicular" },
+            { name: "Hueso Occipital", hint: "Forma la base posterior del cráneo y rodea el foramen magno.", type: "axial" },
+            { name: "Clavícula", hint: "Hueso en forma de 'S' perteneciente a la cintura escapular.", type: "apendicular" }
+        ];
+
+        function renderAxialGameQuestion() {
+            const q = axialGameQuestions[appState.axialGameIndex];
+            document.getElementById('axialGameBoneName').innerText = q.name;
+            document.getElementById('axialGameBoneHint').innerText = q.hint;
+            document.getElementById('axialCurrentIndex').innerText = appState.axialGameIndex + 1;
+        }
+
+        function answerAxialGame(choice) {
+            const q = axialGameQuestions[appState.axialGameIndex];
+            const feedbackBox = document.getElementById('axialRoundFeedback');
+            feedbackBox.classList.remove('hidden');
+
+            if (choice === q.type) {
+                feedbackBox.innerHTML = `<span class="text-emerald-700 flex items-center gap-1"><i class="fa-solid fa-check"></i> Correcto: ${q.name} pertenece al esqueleto ${q.type.toUpperCase()}.</span>`;
+            } else {
+                feedbackBox.innerHTML = `<span class="text-rose-700 flex items-center gap-1"><i class="fa-solid fa-xmark"></i> ${q.name} pertenece en realidad al esqueleto ${q.type.toUpperCase()}.</span>`;
+            }
+
+            setTimeout(() => {
+                feedbackBox.classList.add('hidden');
+                appState.axialGameIndex = (appState.axialGameIndex + 1) % axialGameQuestions.length;
+                renderAxialGameQuestion();
+            }, 1200);
+        }
+
+        function checkCaseU501(caseNum, option) {
+            const feedback = document.getElementById(`feedback-u501-${caseNum}`);
+            feedback.classList.remove('hidden');
+
+            if (caseNum === 1) {
+                if (option === 'A') {
+                    feedback.className = "mt-2 p-3 rounded-xl text-xs leading-relaxed bg-emerald-50 text-emerald-900 border border-emerald-200";
+                    feedback.innerHTML = "<strong>¡Correcto!</strong> La Ley de Wolff establece que el hueso se remodela en respuesta a las tensiones mecánicas. La carga progresiva induce mecanotransducción en los osteocitos estimulando la osteogénesis.";
+                } else {
+                    feedback.className = "mt-2 p-3 rounded-xl text-xs leading-relaxed bg-rose-50 text-rose-900 border border-rose-200";
+                    feedback.innerHTML = "<strong>Incorrecto.</strong> El tejido óseo no se reemplaza por cartílago; la resorción osteoclástica por desuso es reversible mediante el estímulo mecánico adecuado.";
+                }
+            } else if (caseNum === 2) {
+                if (option === 'A') {
+                    feedback.className = "mt-2 p-3 rounded-xl text-xs leading-relaxed bg-emerald-50 text-emerald-900 border border-emerald-200";
+                    feedback.innerHTML = "<strong>¡Correcto!</strong> La rótula actúa como una polea anatómica que aleja la línea de tracción del tendón respecto al centro instantáneo de rotación articular, incrementando el brazo de momento del cuádriceps.";
+                } else {
+                    feedback.className = "mt-2 p-3 rounded-xl text-xs leading-relaxed bg-rose-50 text-rose-900 border border-rose-200";
+                    feedback.innerHTML = "<strong>Incorrecto.</strong> La rótula incrementa el brazo de palanca para maximizar la eficacia del torque extensor, no para anularlo.";
+                }
+            } else if (caseNum === 3) {
+                if (option === 'A') {
+                    feedback.className = "mt-2 p-3 rounded-xl text-xs leading-relaxed bg-emerald-50 text-emerald-900 border border-emerald-200";
+                    feedback.innerHTML = "<strong>¡Correcto!</strong> El hueso esponjoso subcondral responde a las altas presiones mecánicas reorganizando y condensando sus trabéculas según los vectores de fuerza (esclerosis subcondral reactiva).";
+                } else {
+                    feedback.className = "mt-2 p-3 rounded-xl text-xs leading-relaxed bg-rose-50 text-rose-900 border border-rose-200";
+                    feedback.innerHTML = "<strong>Incorrecto.</strong> El hueso no se transforma en tejido conectivo laxo ante la sobrecarga de compresión, sino que hipertrofia sus trabéculas.";
+                }
+            }
+        }
+
+        /* ========================================================================= */
+        /* MOTOR GRÁFICO CANVAS 2D EN TIEMPO REAL                                    */
+        /* ========================================================================= */
+        let animClock = 0;
+
+        const canvasLongBone = document.getElementById('canvas-longbone');
+        const ctxLongBone = canvasLongBone.getContext('2d');
+
+        const canvasRemodeling = document.getElementById('canvas-remodeling');
+        const ctxRemodeling = canvasRemodeling.getContext('2d');
+
+        // Partículas de remodelado celular
+        const remodelingParticles = [];
+        for (let i = 0; i < 40; i++) {
+            remodelingParticles.push({
+                x: 60 + Math.random() * 400,
+                y: 40 + Math.random() * 160,
+                vx: (Math.random() - 0.5) * 0.8,
+                vy: (Math.random() - 0.5) * 0.8,
+                type: i % 2 === 0 ? 'calcio' : 'colageno',
+                radius: 2 + Math.random() * 2
+            });
+        }
+
+        // Partículas de flujo vascular para el modo vascular
+        const vascularParticles = [];
+        for (let i = 0; i < 28; i++) {
+            vascularParticles.push({
+                progress: Math.random(),
+                branch: i % 4, // 0: nutrient main, 1: ascending, 2: descending, 3: periosteal
+                speed: 0.006 + Math.random() * 0.008
+            });
+        }
+
+        // Interacción por clic directo en el Canvas de Hueso Largo
+        canvasLongBone.addEventListener('click', function(e) {
+            const rect = canvasLongBone.getBoundingClientRect();
+            const scaleX = canvasLongBone.width / rect.width;
+            const scaleY = canvasLongBone.height / rect.height;
+            const x = (e.clientX - rect.left) * scaleX;
+            const y = (e.clientY - rect.top) * scaleY;
+
+            if (y < 108) {
+                inspectBonePart('epifisis-prox');
+            } else if (y >= 108 && y < 138) {
+                inspectBonePart('metafisis');
+            } else if (y >= 138 && y < 290) {
+                if (x < 185) {
+                    inspectBonePart('periostio');
+                } else {
+                    inspectBonePart('diafisis');
+                }
+            } else if (y >= 290 && y < 325) {
+                inspectBonePart('metafisis');
+            } else {
+                inspectBonePart('epifisis-dist');
+            }
+        });
+
+        function renderLongBoneCanvas() {
+            ctxLongBone.clearRect(0, 0, canvasLongBone.width, canvasLongBone.height);
+            const w = canvasLongBone.width;
+            const h = canvasLongBone.height;
+            const cx = 200; // Eje central del fémur
+
+            ctxLongBone.save();
+
+            // Fondo sutil según modo
+            if (appState.boneViewMode === 'cargas') {
+                const bgGrad = ctxLongBone.createRadialGradient(cx, h / 2, 50, cx, h / 2, 280);
+                bgGrad.addColorStop(0, 'rgba(67, 102, 0, 0.03)');
+                bgGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                ctxLongBone.fillStyle = bgGrad;
+                ctxLongBone.fillRect(0, 0, w, h);
+            } else if (appState.boneViewMode === 'vascular') {
+                const bgGrad = ctxLongBone.createRadialGradient(cx, h / 2, 50, cx, h / 2, 280);
+                bgGrad.addColorStop(0, 'rgba(225, 29, 72, 0.04)');
+                bgGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                ctxLongBone.fillStyle = bgGrad;
+                ctxLongBone.fillRect(0, 0, w, h);
+            }
+
+            // Resplandor de selección activa
+            const active = appState.selectedBonePart;
+            let glowY = 60, glowH = 65, glowW = 140, glowX = cx - 70;
+            if (active === 'epifisis-prox') { glowY = 30; glowH = 80; glowX = cx - 95; glowW = 175; }
+            else if (active === 'metafisis') { glowY = 104; glowH = 34; glowX = cx - 60; glowW = 120; }
+            else if (active === 'diafisis') { glowY = 138; glowH = 152; glowX = cx - 45; glowW = 90; }
+            else if (active === 'periostio') { glowY = 135; glowH = 158; glowX = cx - 70; glowW = 50; }
+            else if (active === 'epifisis-dist') { glowY = 320; glowH = 85; glowX = cx - 75; glowW = 150; }
+
+            ctxLongBone.save();
+            const pulse = 0.5 + 0.5 * Math.sin(animClock * 3);
+            ctxLongBone.fillStyle = `rgba(67, 102, 0, ${0.08 + pulse * 0.08})`;
+            ctxLongBone.strokeStyle = `rgba(67, 102, 0, ${0.4 + pulse * 0.4})`;
+            ctxLongBone.lineWidth = 2;
+            ctxLongBone.setLineDash([4, 4]);
+            ctxLongBone.beginPath();
+            ctxLongBone.roundRect(glowX - 6, glowY - 4, glowW + 12, glowH + 8, 14);
+            ctxLongBone.fill();
+            ctxLongBone.stroke();
+            ctxLongBone.restore();
+
+            // ==========================================
+            // 1. DIBUJO ANATÓMICO DEL FÉMUR
+            // ==========================================
+
+            // A) Contorno Cortical General (Hueso Compacto Externo)
+            ctxLongBone.beginPath();
+            // Cabeza femoral (esfera proximal orientada medialmente)
+            ctxLongBone.moveTo(cx - 35, 115); // Cuello inferior
+            ctxLongBone.quadraticCurveTo(cx - 80, 105, cx - 85, 70); // Cuello a cabeza
+            ctxLongBone.bezierCurveTo(cx - 95, 30, cx - 40, 25, cx - 30, 48); // Bóveda de la cabeza
+            ctxLongBone.quadraticCurveTo(cx - 20, 60, cx, 65); // Fosa trocantérica
+            // Trocánter Mayor (prominencia lateral superior)
+            ctxLongBone.quadraticCurveTo(cx + 45, 50, cx + 55, 75);
+            ctxLongBone.quadraticCurveTo(cx + 50, 100, cx + 32, 125); // Hacia metáfisis lateral
+            // Diáfisis Cortical Externa (lateral)
+            ctxLongBone.quadraticCurveTo(cx + 26, 200, cx + 30, 290);
+            ctxLongBone.quadraticCurveTo(cx + 40, 320, cx + 60, 350); // Cóndilo lateral
+            ctxLongBone.quadraticCurveTo(cx + 65, 395, cx + 30, 395); // Base cóndilo lateral
+            // Fosa Intercondílea inferior
+            ctxLongBone.quadraticCurveTo(cx + 10, 375, cx, 375);
+            ctxLongBone.quadraticCurveTo(cx - 10, 375, cx - 30, 395); // Base cóndilo medial
+            ctxLongBone.quadraticCurveTo(cx - 65, 395, cx - 60, 350); // Cóndilo medial
+            ctxLongBone.quadraticCurveTo(cx - 40, 320, cx - 30, 290); // Metáfisis distal medial
+            // Diáfisis Cortical Externa (medial)
+            ctxLongBone.quadraticCurveTo(cx - 26, 200, cx - 32, 125);
+            // Trocánter Menor
+            ctxLongBone.quadraticCurveTo(cx - 42, 120, cx - 35, 115);
+            ctxLongBone.closePath();
+
+            // Relleno base cortical
+            const boneGrad = ctxLongBone.createLinearGradient(cx - 90, 0, cx + 70, 0);
+            boneGrad.addColorStop(0, '#fbf8ee');
+            boneGrad.addColorStop(0.3, '#f1ede0');
+            boneGrad.addColorStop(0.7, '#e8e0cc');
+            boneGrad.addColorStop(1, '#dad1bc');
+            ctxLongBone.fillStyle = boneGrad;
+            ctxLongBone.fill();
+
+            ctxLongBone.strokeStyle = '#85755b';
+            ctxLongBone.lineWidth = 1.8;
+            ctxLongBone.stroke();
+
+            // ==========================================
+            // B) CORTE INTERNO: CAVIDAD MEDULAR & TRABÉCULAS
+            // ==========================================
+            if (appState.boneViewMode === 'corte' || appState.boneViewMode === 'cargas' || appState.boneViewMode === 'vascular') {
+                // 1. Tejido Esponjoso en Epífisis Proximal
+                ctxLongBone.save();
+                ctxLongBone.beginPath();
+                ctxLongBone.arc(cx - 55, 62, 28, 0, Math.PI * 2);
+                ctxLongBone.clip();
+                
+                ctxLongBone.fillStyle = 'rgba(239, 68, 68, 0.12)';
+                ctxLongBone.fillRect(cx - 90, 30, 70, 70);
+
+                // Malla trabecular esponjosa fina con médula roja
+                ctxLongBone.strokeStyle = 'rgba(185, 28, 28, 0.35)';
+                ctxLongBone.lineWidth = 1;
+                for (let i = 0; i < 9; i++) {
+                    ctxLongBone.beginPath();
+                    ctxLongBone.moveTo(cx - 85 + i * 7, 40 + (i % 3) * 6);
+                    ctxLongBone.lineTo(cx - 35 - i * 3, 85 - (i % 2) * 5);
+                    ctxLongBone.stroke();
+
+                    ctxLongBone.beginPath();
+                    ctxLongBone.moveTo(cx - 80 + (i % 4) * 5, 80 - i * 4);
+                    ctxLongBone.lineTo(cx - 30 - i * 4, 45 + i * 3);
+                    ctxLongBone.stroke();
+                }
+
+                // Células hematopoyéticas (glóbulos rojos nacientes)
+                ctxLongBone.fillStyle = '#dc2626';
+                for (let i = 0; i < 14; i++) {
+                    const hx = cx - 75 + ((i * 17) % 42);
+                    const hy = 45 + ((i * 13) % 36);
+                    ctxLongBone.beginPath();
+                    ctxLongBone.arc(hx, hy, 1.8, 0, Math.PI * 2);
+                    ctxLongBone.fill();
+                }
+                ctxLongBone.restore();
+
+                // 2. Tejido Esponjoso en Epífisis Distal
+                ctxLongBone.save();
+                ctxLongBone.beginPath();
+                ctxLongBone.moveTo(cx - 50, 340);
+                ctxLongBone.lineTo(cx + 50, 340);
+                ctxLongBone.lineTo(cx + 45, 385);
+                ctxLongBone.lineTo(cx, 370);
+                ctxLongBone.lineTo(cx - 45, 385);
+                ctxLongBone.closePath();
+                ctxLongBone.clip();
+
+                ctxLongBone.fillStyle = 'rgba(239, 68, 68, 0.1)';
+                ctxLongBone.fillRect(cx - 60, 330, 120, 70);
+
+                ctxLongBone.strokeStyle = 'rgba(185, 28, 28, 0.3)';
+                ctxLongBone.lineWidth = 1;
+                for (let i = 0; i < 8; i++) {
+                    ctxLongBone.beginPath();
+                    ctxLongBone.moveTo(cx - 45 + i * 12, 340);
+                    ctxLongBone.lineTo(cx - 35 + i * 10, 390);
+                    ctxLongBone.stroke();
+                }
+                ctxLongBone.restore();
+
+                // 3. Líneas Epifisarias (Metáfisis Proximal y Distal)
+                ctxLongBone.save();
+                ctxLongBone.strokeStyle = '#0284c7';
+                ctxLongBone.lineWidth = 2.5;
+                ctxLongBone.beginPath();
+                ctxLongBone.moveTo(cx - 65, 110);
+                ctxLongBone.quadraticCurveTo(cx - 15, 118, cx + 25, 112);
+                ctxLongBone.stroke();
+
+                ctxLongBone.beginPath();
+                ctxLongBone.moveTo(cx - 35, 318);
+                ctxLongBone.quadraticCurveTo(cx, 322, cx + 35, 318);
+                ctxLongBone.stroke();
+                ctxLongBone.restore();
+
+                // 4. Cavidad Medular Diafisaria (Médula Amarilla rica en Adipocitos)
+                ctxLongBone.save();
+                ctxLongBone.beginPath();
+                ctxLongBone.moveTo(cx - 14, 128);
+                ctxLongBone.lineTo(cx + 14, 128);
+                ctxLongBone.quadraticCurveTo(cx + 12, 210, cx + 15, 305);
+                ctxLongBone.lineTo(cx - 15, 305);
+                ctxLongBone.quadraticCurveTo(cx - 12, 210, cx - 14, 128);
+                ctxLongBone.closePath();
+
+                const marrowGrad = ctxLongBone.createLinearGradient(cx - 15, 0, cx + 15, 0);
+                marrowGrad.addColorStop(0, '#fef08a');
+                marrowGrad.addColorStop(0.5, '#fde047');
+                marrowGrad.addColorStop(1, '#fef08a');
+                ctxLongBone.fillStyle = marrowGrad;
+                ctxLongBone.fill();
+
+                ctxLongBone.strokeStyle = '#ca8a04';
+                ctxLongBone.lineWidth = 1.2;
+                ctxLongBone.stroke();
+
+                // Gotitas lipídicas de adipocitos en médula amarilla
+                ctxLongBone.fillStyle = '#eab308';
+                for (let y = 145; y < 290; y += 18) {
+                    ctxLongBone.beginPath();
+                    ctxLongBone.arc(cx - 5, y, 3.5, 0, Math.PI * 2);
+                    ctxLongBone.arc(cx + 6, y + 7, 3, 0, Math.PI * 2);
+                    ctxLongBone.fill();
+                }
+                ctxLongBone.restore();
+
+                // 5. Cartílago Articular Hialino (Cabeza y Cóndilos)
+                ctxLongBone.save();
+                ctxLongBone.strokeStyle = '#38bdf8';
+                ctxLongBone.lineWidth = 4.5;
+                ctxLongBone.lineCap = 'round';
+                
+                // Cabeza
+                ctxLongBone.beginPath();
+                ctxLongBone.arc(cx - 57, 58, 29, Math.PI * 0.75, Math.PI * 1.85);
+                ctxLongBone.stroke();
+
+                // Cóndilos femorales
+                ctxLongBone.beginPath();
+                ctxLongBone.arc(cx - 36, 386, 17, Math.PI * 0.1, Math.PI * 0.95);
+                ctxLongBone.stroke();
+
+                ctxLongBone.beginPath();
+                ctxLongBone.arc(cx + 36, 386, 17, Math.PI * 0.05, Math.PI * 0.9);
+                ctxLongBone.stroke();
+                ctxLongBone.restore();
+
+                // 6. Periostio (Membrana externa diafisaria)
+                ctxLongBone.save();
+                const isPerioActive = appState.selectedBonePart === 'periostio';
+                ctxLongBone.strokeStyle = isPerioActive ? '#e11d48' : '#fb7185';
+                ctxLongBone.lineWidth = isPerioActive ? 3.5 : 2;
+                
+                // Línea perióstica lateral izquierda
+                ctxLongBone.beginPath();
+                ctxLongBone.moveTo(cx - 36, 130);
+                ctxLongBone.quadraticCurveTo(cx - 32, 210, cx - 35, 290);
+                ctxLongBone.stroke();
+
+                // Fibras de Sharpey (anclaje cortical del periostio)
+                ctxLongBone.strokeStyle = 'rgba(225, 29, 72, 0.4)';
+                ctxLongBone.lineWidth = 1;
+                for (let y = 145; y < 280; y += 14) {
+                    ctxLongBone.beginPath();
+                    ctxLongBone.moveTo(cx - 36, y);
+                    ctxLongBone.lineTo(cx - 28, y - 2);
+                    ctxLongBone.stroke();
+                }
+                ctxLongBone.restore();
+            }
+
+            // ==========================================
+            // C) CAPAS ESPECÍFICAS SEGÚN MODO
+            // ==========================================
+
+            // MODO 2: LÍNEAS DE CARGA Y BIOMECÁNICA
+            if (appState.boneViewMode === 'cargas') {
+                ctxLongBone.save();
+
+                // Vector de Fuerza Gravitatoria / Peso Corporal (Fw)
+                const arrowOffset = Math.sin(animClock * 4) * 3;
+                ctxLongBone.strokeStyle = '#dc2626';
+                ctxLongBone.fillStyle = '#dc2626';
+                ctxLongBone.lineWidth = 3;
+
+                // Flecha de carga en cabeza femoral
+                ctxLongBone.beginPath();
+                ctxLongBone.moveTo(cx - 57, 10 + arrowOffset);
+                ctxLongBone.lineTo(cx - 57, 34 + arrowOffset);
+                ctxLongBone.stroke();
+                ctxLongBone.beginPath();
+                ctxLongBone.moveTo(cx - 62, 28 + arrowOffset);
+                ctxLongBone.lineTo(cx - 57, 36 + arrowOffset);
+                ctxLongBone.lineTo(cx - 52, 28 + arrowOffset);
+                ctxLongBone.fill();
+
+                ctxLongBone.font = 'bold 10px Outfit, sans-serif';
+                ctxLongBone.fillText("F_carga (Peso)", cx - 115, 22 + arrowOffset);
+
+                // Trayectoria de Compresión Principal (Líneas rojas punteadas - Ward)
+                ctxLongBone.strokeStyle = '#ef4444';
+                ctxLongBone.lineWidth = 2;
+                ctxLongBone.setLineDash([4, 3]);
+                for (let i = 0; i < 4; i++) {
+                    ctxLongBone.beginPath();
+                    ctxLongBone.moveTo(cx - 65 + i * 6, 45 + i * 4);
+                    ctxLongBone.quadraticCurveTo(cx - 40 + i * 4, 90, cx - 25 + i * 3, 140);
+                    ctxLongBone.stroke();
+                }
+
+                // Trayectoria de Tracción Principal (Líneas azules - hacia trocánter mayor)
+                ctxLongBone.strokeStyle = '#0284c7';
+                ctxLongBone.lineWidth = 2;
+                for (let i = 0; i < 4; i++) {
+                    ctxLongBone.beginPath();
+                    ctxLongBone.moveTo(cx - 75 + i * 5, 58 + i * 5);
+                    ctxLongBone.quadraticCurveTo(cx - 20, 70 + i * 4, cx + 45 - i * 4, 80 + i * 5);
+                    ctxLongBone.stroke();
+                }
+
+                // Triángulo de Ward (Zona de menor densidad y debilidad osteoporótica)
+                ctxLongBone.fillStyle = 'rgba(245, 158, 11, 0.25)';
+                ctxLongBone.strokeStyle = '#f59e0b';
+                ctxLongBone.lineWidth = 1.5;
+                ctxLongBone.setLineDash([3, 2]);
+                ctxLongBone.beginPath();
+                ctxLongBone.moveTo(cx - 42, 75);
+                ctxLongBone.lineTo(cx - 25, 90);
+                ctxLongBone.lineTo(cx - 45, 98);
+                ctxLongBone.closePath();
+                ctxLongBone.fill();
+                ctxLongBone.stroke();
+
+                ctxLongBone.setLineDash([]);
+                ctxLongBone.fillStyle = '#b45309';
+                ctxLongBone.font = 'bold 9px Outfit, sans-serif';
+                ctxLongBone.fillText("Triángulo de Ward", cx - 125, 88);
+                ctxLongBone.beginPath();
+                ctxLongBone.moveTo(cx - 46, 86);
+                ctxLongBone.lineTo(cx - 36, 86);
+                ctxLongBone.strokeStyle = '#b45309';
+                ctxLongBone.lineWidth = 1;
+                ctxLongBone.stroke();
+
+                // Vectores de Reacción en Rodilla (Platillos tibiales)
+                ctxLongBone.strokeStyle = '#059669';
+                ctxLongBone.fillStyle = '#059669';
+                ctxLongBone.lineWidth = 2.5;
+
+                [-36, 36].forEach(offset => {
+                    ctxLongBone.beginPath();
+                    ctxLongBone.moveTo(cx + offset, 415);
+                    ctxLongBone.lineTo(cx + offset, 395);
+                    ctxLongBone.stroke();
+                    ctxLongBone.beginPath();
+                    ctxLongBone.moveTo(cx + offset - 4, 401);
+                    ctxLongBone.lineTo(cx + offset, 394);
+                    ctxLongBone.lineTo(cx + offset + 4, 401);
+                    ctxLongBone.fill();
+                });
+
+                ctxLongBone.font = 'bold 9px Outfit, sans-serif';
+                ctxLongBone.textAlign = 'center';
+                ctxLongBone.fillText("Reacción del Suelo (Tibia)", cx, 415);
+
+                ctxLongBone.restore();
+            }
+
+            // MODO 3: VASCULARIZACIÓN Y FLUJO SANGUÍNEO
+            if (appState.boneViewMode === 'vascular') {
+                ctxLongBone.save();
+
+                // 1. Arteria Nutricia Principal (Entrada por foramen nutricio)
+                ctxLongBone.strokeStyle = '#e11d48';
+                ctxLongBone.lineWidth = 3;
+                ctxLongBone.lineCap = 'round';
+
+                ctxLongBone.beginPath();
+                ctxLongBone.moveTo(cx - 65, 205);
+                ctxLongBone.quadraticCurveTo(cx - 45, 210, cx - 28, 200); // Penetra corteza
+                ctxLongBone.lineTo(cx, 195); // Llega al canal
+                ctxLongBone.stroke();
+
+                // Rama Ascendente
+                ctxLongBone.lineWidth = 2.2;
+                ctxLongBone.beginPath();
+                ctxLongBone.moveTo(cx, 195);
+                ctxLongBone.quadraticCurveTo(cx - 3, 160, cx - 1, 130);
+                ctxLongBone.quadraticCurveTo(cx - 20, 110, cx - 50, 75); // Rama epifisaria superior
+                ctxLongBone.stroke();
+
+                // Rama Descendente
+                ctxLongBone.beginPath();
+                ctxLongBone.moveTo(cx, 195);
+                ctxLongBone.quadraticCurveTo(cx + 3, 240, cx + 1, 280);
+                ctxLongBone.quadraticCurveTo(cx - 15, 330, cx - 30, 365); // Hacia cóndilo medial
+                ctxLongBone.stroke();
+
+                ctxLongBone.beginPath();
+                ctxLongBone.moveTo(cx + 1, 280);
+                ctxLongBone.quadraticCurveTo(cx + 15, 330, cx + 30, 365); // Hacia cóndilo lateral
+                ctxLongBone.stroke();
+
+                // 2. Red Capilar Perióstica (Arterias periósticas superficiales)
+                ctxLongBone.strokeStyle = 'rgba(244, 63, 94, 0.8)';
+                ctxLongBone.lineWidth = 1.4;
+                for (let y = 140; y < 280; y += 22) {
+                    ctxLongBone.beginPath();
+                    ctxLongBone.moveTo(cx - 38, y);
+                    ctxLongBone.lineTo(cx - 33, y + 8);
+                    ctxLongBone.lineTo(cx - 38, y + 16);
+                    ctxLongBone.stroke();
+
+                    // Conducto de Volkmann vascular
+                    ctxLongBone.beginPath();
+                    ctxLongBone.moveTo(cx - 33, y + 8);
+                    ctxLongBone.lineTo(cx - 20, y + 8);
+                    ctxLongBone.stroke();
+                }
+
+                // 3. Partículas pulsantes de flujo sanguíneo
+                vascularParticles.forEach(p => {
+                    p.progress = (p.progress + p.speed) % 1;
+                    let px = cx, py = 200;
+
+                    if (p.branch === 0) { // Entrada nutricia
+                        px = (cx - 65) + p.progress * 65;
+                        py = 205 - p.progress * 10;
+                    } else if (p.branch === 1) { // Ascendente
+                        px = cx + Math.sin(p.progress * Math.PI) * -8;
+                        py = 195 - p.progress * 110;
+                    } else if (p.branch === 2) { // Descendente
+                        px = cx + Math.sin(p.progress * Math.PI) * 6;
+                        py = 195 + p.progress * 140;
+                    } else { // Perióstica
+                        px = cx - 36;
+                        py = 140 + p.progress * 135;
+                    }
+
+                    ctxLongBone.fillStyle = '#ff2255';
+                    ctxLongBone.shadowColor = '#ff2255';
+                    ctxLongBone.shadowBlur = 6;
+                    ctxLongBone.beginPath();
+                    ctxLongBone.arc(px, py, 2.2, 0, Math.PI * 2);
+                    ctxLongBone.fill();
+                    ctxLongBone.shadowBlur = 0;
+                });
+
+                ctxLongBone.fillStyle = '#9f1239';
+                ctxLongBone.font = 'bold 9px Outfit, sans-serif';
+                ctxLongBone.textAlign = 'left';
+                ctxLongBone.fillText("Arteria Nutricia Principal", cx - 180, 205);
+                ctxLongBone.fillText("Capilares Periósticos (Volkmann)", cx - 180, 155);
+
+                ctxLongBone.restore();
+            }
+
+            // ==========================================
+            // D) ROTULACIÓN ANATÓMICA LATERAL Y GUÍAS
+            // ==========================================
+            ctxLongBone.save();
+            ctxLongBone.font = 'bold 11px Outfit, sans-serif';
+            ctxLongBone.textAlign = 'left';
+            ctxLongBone.setLineDash([2, 3]);
+            ctxLongBone.strokeStyle = '#94a3b8';
+            ctxLongBone.lineWidth = 1;
+
+            const labels = [
+                { y: 60, text: "1. Epífisis Proximal (Médula Roja)", targetY: 60, targetX: cx + 15, key: 'epifisis-prox' },
+                { y: 112, text: "2. Metáfisis (Línea Epifisaria)", targetY: 112, targetX: cx + 25, key: 'metafisis' },
+                { y: 195, text: "3. Diáfisis (Compacto + Médula Amarilla)", targetY: 195, targetX: cx + 28, key: 'diafisis' },
+                { y: 245, text: "4. Periostio (Capa Vascular e Inervada)", targetY: 245, targetX: cx - 36, key: 'periostio', left: true },
+                { y: 360, text: "5. Epífisis Distal (Cóndilos Articulares)", targetY: 360, targetX: cx + 45, key: 'epifisis-dist' }
+            ];
+
+            labels.forEach(lbl => {
+                const isItemActive = appState.selectedBonePart === lbl.key;
+                ctxLongBone.fillStyle = isItemActive ? '#436600' : '#475569';
+                ctxLongBone.font = isItemActive ? 'bold 11px Outfit, sans-serif' : '500 11px Outfit, sans-serif';
+
+                if (lbl.left) {
+                    // Guía izquierda para el periostio
+                    ctxLongBone.beginPath();
+                    ctxLongBone.moveTo(cx - 36, lbl.targetY);
+                    ctxLongBone.lineTo(cx - 85, lbl.y);
+                    ctxLongBone.lineTo(cx - 95, lbl.y);
+                    ctxLongBone.stroke();
+
+                    ctxLongBone.textAlign = 'right';
+                    ctxLongBone.fillText(lbl.text, cx - 100, lbl.y + 4);
+                } else {
+                    // Guías derechas
+                    ctxLongBone.textAlign = 'left';
+                    ctxLongBone.beginPath();
+                    ctxLongBone.moveTo(lbl.targetX, lbl.targetY);
+                    ctxLongBone.lineTo(cx + 80, lbl.y);
+                    ctxLongBone.lineTo(cx + 95, lbl.y);
+                    ctxLongBone.stroke();
+
+                    ctxLongBone.fillText(lbl.text, cx + 102, lbl.y + 4);
+                }
+            });
+
+            ctxLongBone.restore();
+            ctxLongBone.restore();
+        }
+
+
+
+        function renderRemodelingCanvas() {
+            ctxRemodeling.clearRect(0, 0, canvasRemodeling.width, canvasRemodeling.height);
+            const w = canvasRemodeling.width;
+            const h = canvasRemodeling.height;
+
+            const trabeculaThickness = 60 * (appState.boneDensity / 100);
+            const midY = h / 2;
+
+            ctxRemodeling.save();
+            const grad = ctxRemodeling.createLinearGradient(0, midY - trabeculaThickness, 0, midY + trabeculaThickness);
+            
+            if (appState.remodelingMode === 'exercise') {
+                grad.addColorStop(0, '#dcfce7');
+                grad.addColorStop(0.5, '#ffffff');
+                grad.addColorStop(1, '#dcfce7');
+            } else if (appState.remodelingMode === 'bedrest') {
+                grad.addColorStop(0, '#ffe4e6');
+                grad.addColorStop(0.5, '#ffffff');
+                grad.addColorStop(1, '#ffe4e6');
+            } else {
+                grad.addColorStop(0, '#f1f6eb');
+                grad.addColorStop(0.5, '#ffffff');
+                grad.addColorStop(1, '#f1f6eb');
+            }
+
+            ctxRemodeling.fillStyle = grad;
+            ctxRemodeling.strokeStyle = '#436600';
+            ctxRemodeling.lineWidth = 2;
+
+            ctxRemodeling.beginPath();
+            ctxRemodeling.roundRect(50, midY - trabeculaThickness, w - 100, trabeculaThickness * 2, 12);
+            ctxRemodeling.fill();
+            ctxRemodeling.stroke();
+
+            for (let i = 0; i < 5; i++) {
+                const ox = 110 + i * 75;
+                const oy = midY + Math.sin(animClock + i) * 6;
+
+                ctxRemodeling.strokeStyle = '#cbd5e1';
+                ctxRemodeling.lineWidth = 1;
+                for (let a = 0; a < Math.PI * 2; a += Math.PI / 4) {
+                    ctxRemodeling.beginPath();
+                    ctxRemodeling.moveTo(ox, oy);
+                    ctxRemodeling.lineTo(ox + Math.cos(a) * 14, oy + Math.sin(a) * 14);
+                    ctxRemodeling.stroke();
+                }
+
+                ctxRemodeling.fillStyle = '#b45309';
+                ctxRemodeling.beginPath();
+                ctxRemodeling.arc(ox, oy, 4.5, 0, Math.PI * 2);
+                ctxRemodeling.fill();
+            }
+
+            remodelingParticles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 60 || p.x > w - 60) p.vx *= -1;
+                if (p.y < 30 || p.y > h - 30) p.vy *= -1;
+
+                ctxRemodeling.fillStyle = p.type === 'calcio' ? '#0284c7' : '#d97706';
+                ctxRemodeling.beginPath();
+                ctxRemodeling.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctxRemodeling.fill();
+            });
+
+            const clastX = 130 + Math.sin(animClock * 1.5) * 8;
+            const clastY = midY - trabeculaThickness - 2;
+
+            ctxRemodeling.fillStyle = '#e11d48';
+            ctxRemodeling.beginPath();
+            ctxRemodeling.arc(clastX, clastY, 14, Math.PI, Math.PI * 2);
+            ctxRemodeling.closePath();
+            ctxRemodeling.fill();
+
+            ctxRemodeling.fillStyle = '#ffffff';
+            ctxRemodeling.beginPath();
+            ctxRemodeling.arc(clastX - 5, clastY - 6, 2.5, 0, Math.PI * 2);
+            ctxRemodeling.arc(clastX + 5, clastY - 6, 2.5, 0, Math.PI * 2);
+            ctxRemodeling.arc(clastX, clastY - 10, 2.5, 0, Math.PI * 2);
+            ctxRemodeling.fill();
+
+            for (let b = 0; b < 3; b++) {
+                const bx = 320 + b * 28 + Math.cos(animClock * 1.2 + b) * 3;
+                const by = midY + trabeculaThickness + 4;
+
+                ctxRemodeling.fillStyle = '#059669';
+                ctxRemodeling.beginPath();
+                ctxRemodeling.arc(bx, by, 8, 0, Math.PI * 2);
+                ctxRemodeling.fill();
+
+                ctxRemodeling.fillStyle = '#ffffff';
+                ctxRemodeling.beginPath();
+                ctxRemodeling.arc(bx, by, 2.5, 0, Math.PI * 2);
+                ctxRemodeling.fill();
+            }
+
+            ctxRemodeling.fillStyle = '#1e293b';
+            ctxRemodeling.font = 'bold 10px Outfit, sans-serif';
+            ctxRemodeling.fillText("Osteoclasto (Resorción)", clastX - 35, clastY - 18);
+            ctxRemodeling.fillText("Osteoblastos (Síntesis de Osteoide)", 290, midY + trabeculaThickness + 22);
+
+            ctxRemodeling.restore();
+        }
+
+        function animationLoop() {
+            animClock += 0.04;
+            if (appState.currentTab === 'tab-functions') {
+                renderLongBoneCanvas();
+            } else if (appState.currentTab === 'tab-histology') {
+                renderRemodelingCanvas();
+            }
+            requestAnimationFrame(animationLoop);
+        }
+
+        window.onload = function() {
+            renderMorphologyGame();
+            renderAxialGameQuestion();
+            selectFunction(3);
+            inspectBonePart('epifisis-prox');
+            requestAnimationFrame(animationLoop);
+        };
+    </script>
+</body>
+</html>
